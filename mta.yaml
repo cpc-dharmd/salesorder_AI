@@ -1,7 +1,7 @@
 _schema-version: "3.3.0"
-ID: cap-ai-salesorder
+ID: cap-ai-salesorder-fin
 description: CAP Sales Order Application
-version: 3.0.0
+version: 4.0.0
 
 parameters:
   enable-parallel-deployments: true
@@ -16,7 +16,7 @@ build-parameters:
 
 modules:
 
-  - name: cap-ai-salesorder-srv
+  - name: cap-ai-salesorder-fin-srv
     type: nodejs
     path: gen/srv
 
@@ -33,9 +33,9 @@ modules:
           srv-url: ${default-url}
 
     requires:
-      - name: cap-ai-salesorder-xsuaa
-      - name: cap-ai-salesorder-destination
-      - name: cap-ai-salesorder-connectivity
+      - name: cap-ai-salesorder-fin-xsuaa
+      - name: cap-ai-salesorder-fin-destination
+      - name: cap-ai-salesorder-fin-connectivity
       - name: ai-core-test
 
   - name: salesorderui
@@ -50,12 +50,12 @@ modules:
       build-result: dist
       supported-platforms: []
 
-  - name: cap-ai-salesorder-app-content
+  - name: cap-ai-salesorder-fin-app-content
     type: com.sap.application.content
     path: .
 
     requires:
-      - name: cap-ai-salesorder-repo-host
+      - name: cap-ai-salesorder-fin-repo-host
         parameters:
           content-target: true
 
@@ -68,7 +68,7 @@ modules:
             - salesorderui.zip
           target-path: resources/
 
-  - name: cap-ai-salesorder-approuter
+  - name: cap-ai-salesorder-fin-approuter
     type: approuter.nodejs
     path: app/router
 
@@ -84,9 +84,9 @@ modules:
           app-uri: ${default-uri}
 
     requires:
-      - name: cap-ai-salesorder-xsuaa
-      - name: cap-ai-salesorder-destination
-      - name: cap-ai-salesorder-repo-runtime
+      - name: cap-ai-salesorder-fin-xsuaa
+      - name: cap-ai-salesorder-fin-destination
+      - name: cap-ai-salesorder-fin-repo-runtime
       - name: srv-api
         group: destinations
         properties:
@@ -96,7 +96,7 @@ modules:
 
 resources:
 
-  - name: cap-ai-salesorder-xsuaa
+  - name: cap-ai-salesorder-fin-xsuaa
     type: org.cloudfoundry.managed-service
 
     parameters:
@@ -106,7 +106,7 @@ resources:
     requires:
       - name: app-api
 
-  - name: cap-ai-salesorder-destination
+  - name: cap-ai-salesorder-fin-destination
     type: org.cloudfoundry.managed-service
 
     parameters:
@@ -139,21 +139,21 @@ resources:
     requires:
       - name: srv-api
 
-  - name: cap-ai-salesorder-connectivity
+  - name: cap-ai-salesorder-fin-connectivity
     type: org.cloudfoundry.managed-service
 
     parameters:
       service: connectivity
       service-plan: lite
 
-  - name: cap-ai-salesorder-repo-host
+  - name: cap-ai-salesorder-fin-repo-host
     type: org.cloudfoundry.managed-service
 
     parameters:
       service: html5-apps-repo
       service-plan: app-host
 
-  - name: cap-ai-salesorder-repo-runtime
+  - name: cap-ai-salesorder-fin-repo-runtime
     type: org.cloudfoundry.managed-service
 
     parameters:

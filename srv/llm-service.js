@@ -10,9 +10,13 @@ class LLMService {
                     name: "gpt-5"
                 }
             }
-        });
+            },
+            {
+                deploymentId: "d3da89ea2abc7fc5"
+            },
+        );
 
-        const prompt = `
+    const prompt = `
 You are an SAP Sales Order Agent.
 
 Your job is to identify:
@@ -49,17 +53,18 @@ Response:
 Question:
 ${question}
 `;
+console.log("orchestration client:",orchestrationClient);
 
-        const response = await orchestrationClient.chatCompletion({
-            messages: [
-                {
-                    role: "user",
-                    content: prompt
-                }
-            ]
-        });
+    const response = await orchestrationClient.chatCompletion({
+        messages: [
+            {
+                role: "user",
+                content: prompt
+            }
+        ]
+    });
 
-        const content = response.getContent();
+    const content = response.getContent();
 
         console.log("LLM Response:", content);
 
