@@ -1,0 +1,7 @@
+{
+  "xsappname": "cap-ai-salesorder",
+  "tenant-mode": "dedicated",
+  "scopes": [],
+  "attributes": [],
+  "role-templates": []
+}

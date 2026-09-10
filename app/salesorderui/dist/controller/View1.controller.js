@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ui/core/mvc/Controller","sap/ui/model/json/JSONModel"],(e,s)=>{"use strict";return e.extend("salesorderui.controller.View1",{onInit(){},onGetSalesOrdder:async function(){var e=this.getView().byId("salesorder").getValue();const t=await fetch("/odata/v4/sales-order/getSalesOrder",{method:"POST",headers:{"content-Type":"application/json"},body:JSON.stringify({question:e})});const o=await t.json();console.log("CAP response",o);var a=new s;a.setData({salesOrders:[o]});this.getView().setModel(a,"salesData")}})});
+//# sourceMappingURL=View1.controller.js.map

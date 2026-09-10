@@ -1,0 +1,54 @@
+<mvc:View controllerName="salesorderui.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+    <Input id="salesorder" placeholder="Enter sales order"></Input>
+    <Button id ="button" text="Get Sales Order" press="onGetSalesOrdder"></Button>
+    <Table id="table" items="{salesData>/salesOrders}">
+    <columns>
+            <Column
+                width="12em">
+                <Text text="Sales Order" />
+            </Column>
+            <Column
+                minScreenWidth="Tablet"
+                demandPopin="true">
+                <Text text="Sales Order Type" />
+            </Column>
+            <Column
+                minScreenWidth="Desktop"
+                demandPopin="true"
+                hAlign="End">
+                <Text text="Sales Organization" />
+            </Column>
+            <Column
+                minScreenWidth="Desktop"
+                demandPopin="true"
+                hAlign="Center">
+                <Text text="Sold To Party" />
+            </Column>
+            <Column
+                hAlign="End">
+                <Text text="Creation Date" />
+            </Column>
+        </columns>
+            <items>
+            <ColumnListItem>
+                <cells>
+                    <ObjectIdentifier
+                        text="{salesData>salesOrder}"/>
+                    <Text
+                        text="{salesData>salesOrderType}" />
+                    <Text
+                        text="{salesData>salesOrganization}" />
+                        <Text
+                        text="{salesData>soldToParty}" />
+                    <Text
+                        text="{salesData>creationDate}" />
+                   
+                </cells>
+            </ColumnListItem>
+        </items>
+    </Table>
+    </Page>
+</mvc:View>
